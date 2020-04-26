@@ -1,1 +1,2 @@
-# VBAProjects-C
+共同でVBAを作成するためのリポジトリ
+teamC
