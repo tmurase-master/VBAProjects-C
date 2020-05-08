@@ -14,11 +14,9 @@ Sub OutputResultFile()
     
    '新規ファイル作成
       Set resultFile = Workbooks.Add
-  
-   'とりあえず元フィルのAIセルの値を新規ファイルにコピー（不要？）
-      'ThisWorkbook.Sheets(1).Range("A1").Copy _
-      'resultFile.Sheets(1).Range("A1")
-   
+   '新規ファイルの1 番目のシートをアクティブ
+      resultFile.Sheets(1).Activate          '
+ 
    '保存するファイルの名前を入力（名前を付けて保存）
       resultFileName = Application.GetSaveAsFilename( _
           InitialFilename:="集計結果.xlsx", FileFilter:="Excelファイル, *.xlsx")
