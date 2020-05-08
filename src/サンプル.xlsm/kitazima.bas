@@ -7,8 +7,8 @@ Attribute VB_Name = "kitazima"
 'Owner kitazima
 '---------------------------------------------------------------
 
-Sub HalloMacro()
-    'Display [Hallo Macro]
-    MsgBox "Hallo Macro"
+Sub OpenAndCloseBooks()
+    'Commit Test
+    MsgBox "Commit Test"
 End Sub
 
