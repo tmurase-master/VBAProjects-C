@@ -1,6 +1,6 @@
 Attribute VB_Name = "Module_ooba"
 '---------------------------------------------------------------
-'③合計を出力するマクロ
+'合計を出力するマクロ
 '（１）エクセルシート指定して開く
 '（２）ある２つのセルに入力された値を２つの変数に読み込む
 '（３）合計値を計算する
@@ -29,7 +29,7 @@ Attribute VB_Name = "Module_ooba"
     '（３）合計値を計算する
     '（４）合計値を別のセルに出力する
     resultSheet.Cells(1, 1).Value = fcell + scell  '合計値を出力
-    fcell = fcell + scell  '合計値を出力
+    fcell = fcell + scell  '合計値を保管
 
     ' MsgBox Cells(1, 3) '計算結果出力
 

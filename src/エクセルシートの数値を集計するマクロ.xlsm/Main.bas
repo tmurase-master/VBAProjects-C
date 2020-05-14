@@ -3,9 +3,9 @@ Sub エクセルシートの数値を集計するマクロ()
 
 '-----変数宣言開始-----
     Dim targetFolderPath As String  '作業対象フォルダ
-    Dim targetFileNames() As String '作業対象エクセルシート
+    Dim targetFileNames() As String '作業対象エクセルシート名（配列）
     
-    Dim resultFileName As String  '結果出力エクセルシート名
+    Dim resultFileName As String  '結果出力エクセルファイル名
     Dim resultFile As Workbook    '結果出力エクセルブック
     Dim resultSheet As Worksheet  '結果出力エクセルシート
 '-----変数宣言終了-----
@@ -28,12 +28,3 @@ Sub エクセルシートの数値を集計するマクロ()
 '-----最終処理終了-----
 
 End Sub
-
-
-Sub Init()
-  
-      
-    
-    
-End Sub
-
