@@ -33,7 +33,7 @@ Function SelectBooks(foPath As String, fiName() As String)
     fiNum = 0
     tempfiName = Dir(foPath & "\*.xls*") '対象フォルダの最初のファイル名
     
-'-----ファイルを開いて閉じる-----
+'-----フォルダ内のエクセルファイル名をすべて取得-----
     Do While tempfiName <> "" 'フォルダにエクセルファイルがある場合
         ReDim Preserve fiName(fiNum)
         fiName(fiNum) = tempfiName
@@ -49,6 +49,19 @@ Function ProcessBooks(foPath As String, fiName() As String, resultSheet As Works
     Dim fcell As Double
     
     sum = 0
+    
+    'ファイル名のみの比較
+    '（フォルダパスは比較しないが、ファイル名が同一のファイルを開くとエラーとなるため回避要）
+    'SelectBooksで取得したファイル名がすでに開かれていないかチェックする
+    'Filter : fiName内にwb.Nameが含まれていないと-1を返す
+    'End : プログラム全体を終了
+    For Each wb In Workbooks
+        If UBound(Filter(fiName, wb.Name)) <> -1 Then
+            MsgBox "処理対象のファイルがすでに開かれているため処理を中止しました", vbCritical
+            End
+        End If
+    Next wb
+    
     For i = 0 To UBound(fiName)
         Workbooks.Open foPath & "\" & fiName(i) '開く
         ' セルを指定して、値を返す（Owner kinoshita）
