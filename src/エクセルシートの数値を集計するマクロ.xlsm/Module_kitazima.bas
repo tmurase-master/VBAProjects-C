@@ -64,12 +64,23 @@ Function ProcessBooks(foPath As String, fiName() As String, resultSheet As Works
     
     For i = 0 To UBound(fiName)
         Workbooks.Open foPath & "\" & fiName(i) '開く
+        
+        '開いたファイル名をC列に記載
+        resultSheet.Cells(i + 1, 3) = fiName(i) & "　読込開始"
+        
         ' セルを指定して、値を返す（Owner kinoshita）
         fcell = Kagebunshin("テスト", "H3")
         ' 取得した値を足して出力する（Owner ooba）
         Call Sumcells(sum, fcell, resultSheet)
-        Workbooks(fiName(i)).Close SaveChanges:=False   '上書きせずファイルを閉じる
+        Workbooks(fiName(i)).Close savechanges:=False   '上書きせずファイルを閉じる
+        
+        '閉じたファイル名をD列に記載
+        resultSheet.Cells(i + 1, 4) = fiName(i) & "　読込完了"
+        
     Next i
+    
+    ' 出力したログの列幅自動調整
+    resultSheet.Range("C:D").Columns.AutoFit
     
 End Function
     
