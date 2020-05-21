@@ -9,7 +9,7 @@ Attribute VB_Name = "Module_ooba"
 '---------------------------------------------------------------
 
 
- Function Sumcells(fcell As Double, scell As Double, resultSheet As Worksheet)
+ Function Sumcells(fcell As Double, resultSheet As Worksheet, cPosition As String)
 
 '-----変数宣言-----
     'Dim Path As String '対象エクセルシートのファイルパス
@@ -28,8 +28,7 @@ Attribute VB_Name = "Module_ooba"
     
     '（３）合計値を計算する
     '（４）合計値を別のセルに出力する
-    resultSheet.Cells(1, 1).Value = fcell + scell  '合計値を出力
-    fcell = fcell + scell  '合計値を保管
+   resultSheet.Range(cPosition).Value = resultSheet.Range(cPosition).Value + fcell  '合計値を出力
 
     ' MsgBox Cells(1, 3) '計算結果出力
 

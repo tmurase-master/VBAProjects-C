@@ -43,7 +43,7 @@ Function SelectBooks(foPath As String, fiName() As String)
     
 End Function
 
-Function ProcessBooks(foPath As String, fiName() As String, resultSheet As Worksheet)
+Function ProcessBooks(foPath As String, fiName() As String, targetSheet As String, resultSheet As Worksheet, sCell As String, eCell As String)
     Dim i As Integer
     Dim sum As Double
     Dim fcell As Double
@@ -67,11 +67,16 @@ Function ProcessBooks(foPath As String, fiName() As String, resultSheet As Works
         
         '開いたファイル名をC列に記載
         resultSheet.Cells(i + 1, 3) = fiName(i) & "　読込開始"
-        
-        ' セルを指定して、値を返す（Owner kinoshita）
-        fcell = Kagebunshin("テスト", "H3")
-        ' 取得した値を足して出力する（Owner ooba）
-        Call Sumcells(sum, fcell, resultSheet)
+       ' -------------------------------------------------------------
+        Worksheets(targetSheet).Range(sCell & ":" & eCell).Select
+        For Each targetCell In Selection.Cells
+            ' セルを指定して、値を返す（Owner kinoshita）
+            fcell = Kagebunshin("テスト", targetCell.Address)
+            
+            ' 取得した値を足して出力する（Owner ooba）
+            Call Sumcells(fcell, resultSheet, targetCell.Address)
+        Next
+        '-------------------------------------------------------------
         Workbooks(fiName(i)).Close savechanges:=False   '上書きせずファイルを閉じる
         
         '閉じたファイル名をD列に記載
