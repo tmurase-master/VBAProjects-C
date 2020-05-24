@@ -43,7 +43,7 @@ Function SelectBooks(foPath As String, fiName() As String)
     
 End Function
 
-Function ProcessBooks(foPath As String, fiName() As String, targetSheet As String, resultSheet As Worksheet, sCell As String, eCell As String)
+Function ProcessBooks(foPath As String, fiName() As String, targetSheet As String, resultBook As Workbook, resultSheet As Worksheet, sCell As String, eCell As String)
     Dim i As Integer
     Dim sum As Double
     Dim fcell As Double
@@ -65,8 +65,8 @@ Function ProcessBooks(foPath As String, fiName() As String, targetSheet As Strin
     For i = 0 To UBound(fiName)
         Workbooks.Open foPath & "\" & fiName(i) '開く
         
-        '開いたファイル名をC列に記載
-        resultSheet.Cells(i + 1, 3) = fiName(i) & "　読込開始"
+        '開いたファイル名をA列に記載
+        resultBook.Worksheets(2).Cells(i + 1, 1) = fiName(i) & "　読込開始"
        ' -------------------------------------------------------------
         Worksheets(targetSheet).Range(sCell & ":" & eCell).Select
         For Each targetCell In Selection.Cells
@@ -79,13 +79,13 @@ Function ProcessBooks(foPath As String, fiName() As String, targetSheet As Strin
         '-------------------------------------------------------------
         Workbooks(fiName(i)).Close savechanges:=False   '上書きせずファイルを閉じる
         
-        '閉じたファイル名をD列に記載
-        resultSheet.Cells(i + 1, 4) = fiName(i) & "　読込完了"
+        '閉じたファイル名をB列に記載
+        resultBook.Worksheets(2).Cells(i + 1, 2) = fiName(i) & "　読込完了"
         
     Next i
     
     ' 出力したログの列幅自動調整
-    resultSheet.Range("C:D").Columns.AutoFit
+    resultBook.Worksheets(2).Range("A:B").Columns.AutoFit
     
 End Function
     

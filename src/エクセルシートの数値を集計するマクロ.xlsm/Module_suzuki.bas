@@ -8,10 +8,15 @@ Attribute VB_Name = "Module_suzuki"
 '---------------------------------------------------------------
 
 Function OpenResultSheet(resultFile As Workbook, resultSheet As Worksheet)
+
+    Dim tempSheetName As Worksheet
+
     '新規ファイル作成
     Set resultFile = Workbooks.Add
+    
     '新規ファイルの1 番目のシートを変数に格納
     Set resultSheet = resultFile.Sheets(1)
+    
  End Function
   
 Function OutputResultFile(resultFile As Workbook)
